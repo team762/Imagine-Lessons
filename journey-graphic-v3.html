@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your 6-Month Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .phase {
+            margin-bottom: 50px;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+        }
+
+        .phase-number {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .phase-desc {
+            font-size: 0.95rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* Phase Colors */
+        .phase-1 .phase-header { border-color: #22c55e; }
+        .phase-1 .phase-number { background: #22c55e; color: #000; }
+        .phase-1 .step:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+        .phase-1 .step:hover::before { background: #22c55e; }
+
+        .phase-2 .phase-header { border-color: #3b82f6; }
+        .phase-2 .phase-number { background: #3b82f6; color: #fff; }
+        .phase-2 .step:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+        .phase-2 .step:hover::before { background: #3b82f6; }
+
+        .phase-3 .phase-header { border-color: #f59e0b; }
+        .phase-3 .phase-number { background: #f59e0b; color: #000; }
+        .phase-3 .step:hover { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .phase-3 .step:hover::before { background: #f59e0b; }
+
+        .phase-4 .phase-header { border-color: #ec4899; }
+        .phase-4 .phase-number { background: #ec4899; color: #fff; }
+        .phase-4 .step:hover { border-color: #ec4899; background: rgba(236, 72, 153, 0.1); }
+        .phase-4 .step:hover::before { background: #ec4899; }
+
+        .phase-5 .phase-header { border-color: #a78bfa; }
+        .phase-5 .phase-number { background: #a78bfa; color: #000; }
+        .phase-5 .step:hover { border-color: #a78bfa; background: rgba(167, 139, 250, 0.1); }
+        .phase-5 .step:hover::before { background: #a78bfa; }
+
+        .phase-6 .phase-header { border-color: #06b6d4; }
+        .phase-6 .phase-number { background: #06b6d4; color: #000; }
+        .phase-6 .step:hover { border-color: #06b6d4; background: rgba(6, 182, 212, 0.1); }
+        .phase-6 .step:hover::before { background: #06b6d4; }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-left: 25px;
+            border-left: 3px solid #333;
+            margin-left: 27px;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #444;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover::before {
+            transform: translateY(-50%) scale(1.4);
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .step-why {
+            color: #999;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .key-message {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .key-message h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #a78bfa;
+        }
+
+        .key-message ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .key-message li {
+            padding-left: 28px;
+            position: relative;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .key-message li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        .key-message li strong {
+            color: #fff;
+        }
+
+        .bottom-callout {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .bottom-callout p {
+            font-size: 1.1rem;
+            color: #f87171;
+            font-weight: 500;
+        }
+
+        .content-callout {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .content-callout h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+
+        .content-callout p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .content-callout p strong {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your 6-Month Journey</h1>
+        <p class="subtitle">Every step, in order. The order matters - here's why.</p>
+
+        <!-- Phase 1: Get Live -->
+        <div class="phase phase-1">
+            <div class="phase-header">
+                <div class="phase-number">1</div>
+                <div>
+                    <div class="phase-title">Get Live</div>
+                    <div class="phase-desc">You're posting from Day 1 - not sitting in theory</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Source your iPhone and aged email</div>
+                    <div class="step-why">You need a separate iPhone for your accounts. You need an email that's been around for a while - new emails get flagged. We show you exactly where to get both.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Set up Fanvue account</div>
+                    <div class="step-why">This is where you make money. Fanvue requires ID verification (KYC) which takes up to 24 hours - get it started now so it's ready when you need it. Once approved, add your Fanvue handle to your integrations on the portal so we can track your progress.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Get your 30-day content pack</div>
+                    <div class="step-why">We give you 30 days of ready-to-post content. This is what you'll post while you learn. You don't need to create anything yet - just post what we give you.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Create your Instagram account</div>
+                    <div class="step-why">Using the iPhone and aged email you sourced. We walk you through exactly how to set it up so it doesn't get flagged or banned.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Create your Twitter account</div>
+                    <div class="step-why">Same thing - using your iPhone and email. Twitter is less strict but we still show you the right way to do it.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Start warmup on Instagram</div>
+                    <div class="step-why">New Instagram accounts are restricted. You can't just start posting like crazy - you'll get banned. Warmup takes 18 days. You post from the content pack during this time, gradually increasing activity.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Start warmup on Twitter</div>
+                    <div class="step-why">Twitter warmup is faster - about 7 days. Same idea: gradual activity increase so the platform trusts your account.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Post daily from your 30-day pack</div>
+                    <div class="step-why">While warmup runs and while you learn the rest of the course, you're posting every day. Building the habit. Growing followers. Not wasting time.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Build Foundation -->
+        <div class="phase phase-2">
+            <div class="phase-header">
+                <div class="phase-number">2</div>
+                <div>
+                    <div class="phase-title">Build Your Foundation</div>
+                    <div class="phase-desc">Know exactly who you are before you create</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Validate your niche</div>
+                    <div class="step-why">You picked a niche on your onboarding call. Now we make sure it's actually good. Research competitors, find gaps in the market, see what's working. If your niche is shit, we pivot now - not after you've created 100 images.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Build your persona deep</div>
+                    <div class="step-why">Your AI model isn't just a face. She has a name, age, backstory, personality, voice, lifestyle, interests. The deeper you go, the more real she feels, the more people connect. We give you templates to build this out properly.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Learn how to use the AI tools (Resources section)</div>
+                    <div class="step-why">Model creation, image generation, video generation - all the technical "how to use the tools" stuff lives in Resources. Go through these when you're ready to create. Tools change, so we update these separately from the main lessons.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3: Create Content -->
+        <div class="phase phase-3">
+            <div class="phase-header">
+                <div class="phase-number">3</div>
+                <div>
+                    <div class="phase-title">Create Your Content</div>
+                    <div class="phase-desc">Your first batch - it won't be perfect, and that's fine</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Set up your Instagram properly</div>
+                    <div class="step-why">Profile picture, bio, highlights, grid layout. First impressions matter. We show you exactly what a good profile looks like vs a shit one.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Set up your Twitter properly</div>
+                    <div class="step-why">Same thing - profile, banner, bio, pinned tweet. Different platform, different rules. We cover both.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Create your first batch of images</div>
+                    <div class="step-why">Profile pics, feed images, Fanvue content. Your first attempt won't be amazing - that's expected. The point is to start creating and get something out there.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Create your first videos</div>
+                    <div class="step-why">Reels, stories, Twitter videos. Video gets way more reach than images. Again - first attempt, won't be perfect. You'll improve.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Set up your Fanvue profile properly</div>
+                    <div class="step-why">Bio, banner, intro video, pricing, subscription tiers, automated welcome messages, wall posts. Everything needs to be dialled in before you send traffic there.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Test, post, see what works</div>
+                    <div class="step-why">Post your content. Watch what gets engagement. Watch what flops. This is data. You're learning what your audience responds to.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4: Get Good -->
+        <div class="phase phase-4">
+            <div class="phase-header">
+                <div class="phase-number">4</div>
+                <div>
+                    <div class="phase-title">Get Good</div>
+                    <div class="phase-desc">You've been posting shit content to get the ball rolling - now it's time to actually get good</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Warmup finishes - switch to your own content</div>
+                    <div class="step-why">Your 30-day pack runs out around when warmup ends. Perfect timing. Now you're posting the content YOU created. Your accounts are warmed up and ready to grow.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Learn marketing competence</div>
+                    <div class="step-why">NOW you learn why content actually works. Hooks that stop the scroll. Retention that keeps people watching. Aesthetics that look professional. Positioning that stands out. Trends that are working right now. This is the difference between content that grows and content that flops.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Go back and improve your content</div>
+                    <div class="step-why">Look at your early content with fresh eyes. It's probably shit - that's expected. Now you know what good looks like. Apply what you learned. Remake it. Level up.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Iterate - test, analyse, improve, repeat</div>
+                    <div class="step-why">Check your analytics. What's getting reach? What's flopping? Double down on what works. Cut what doesn't. Keep improving. This never stops.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 5: Grow -->
+        <div class="phase phase-5">
+            <div class="phase-header">
+                <div class="phase-number">5</div>
+                <div>
+                    <div class="phase-title">Grow & Scale</div>
+                    <div class="phase-desc">Content is good enough - now push it</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Free marketing strategies</div>
+                    <div class="step-why">S4S (share for share), collaborations, engagement groups, hashtag strategy, viral content formats. Ways to grow without spending money. We cover all of them.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Paid marketing strategies</div>
+                    <div class="step-why">Instagram boosts, paid shoutouts, Twitter promotion methods. Your content is good enough to spend money on now. We show you exactly how to do each one without wasting budget.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Expand to more platforms</div>
+                    <div class="step-why">Threads, TikTok, other platforms. Same content, more reach. Repurpose what you're already making - don't start from scratch.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Create backup accounts</div>
+                    <div class="step-why">2nd Instagram, 2nd Twitter. Same model, more accounts, more traffic to your Fanvue. Scale horizontally.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 6: Build Business -->
+        <div class="phase phase-6">
+            <div class="phase-header">
+                <div class="phase-number">6</div>
+                <div>
+                    <div class="phase-title">Build The Business</div>
+                    <div class="phase-desc">Turn this into a machine that runs without you</div>
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-title">Learn chatting and selling</div>
+                    <div class="step-why">Subscribers on Fanvue need to be talked to. DMs, selling PPV content, handling objections, building relationships. This is where the real money is made - not just subscriptions.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Optimise your pricing and revenue</div>
+                    <div class="step-why">Subscription price, PPV pricing, bundles, promos. Small tweaks can double your revenue. We show you what to test and how.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Outsource chatting</div>
+                    <div class="step-why">When you're getting 2-3+ subscribers per day, you can't chat everyone yourself. Hire chatters or use an agency. We show you how to find, vet, and manage them.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Scale to more accounts</div>
+                    <div class="step-why">3rd, 4th, 5th accounts. Each one is another traffic source. VAs can manage the backup accounts - you focus on the main one or step back entirely.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Hire your team and build systems</div>
+                    <div class="step-why">Chatters for DMs. VAs for posting. Content creators if needed. Document everything into SOPs. When your team can follow a system, the business runs without you.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why This Order -->
+        <div class="key-message">
+            <h2>Why This Specific Order?</h2>
+            <ul>
+                <li><strong>You post BEFORE you're good</strong> → builds the habit, warmup runs, you're growing while learning - not stuck in theory for weeks</li>
+                <li><strong>You learn marketing competence AFTER you've created</strong> → hits way harder when you can look at your own content and see exactly what's wrong with it</li>
+                <li><strong>You improve THEN spend money</strong> → don't waste budget boosting shit content - fix it first, then pay to push it</li>
+                <li><strong>You monetise THEN hire</strong> → don't build a team before there's money coming in to pay them</li>
+                <li><strong>You scale accounts AFTER your first one works</strong> → prove the model works before multiplying it</li>
+            </ul>
+        </div>
+
+        <!-- What Matters Most -->
+        <div class="content-callout">
+            <h2>The Things That Matter Most</h2>
+            <p><strong>1. Content quality.</strong> The students who win are the ones with the best content. Not the most content - the <em>best</em>. Hooks that stop the scroll. Aesthetics that look professional. Positioning that stands out. And it never stops - trends change, algorithms change, you need to stay sharp and keep adapting.</p>
+            <br>
+            <p><strong>2. Consistency and aggression.</strong> You can't take days off. Success requires hustle. Daily posting, daily engagement, daily progress. The good news? We've made it as easy as possible - the 30-day pack, the templates, the systems. But you still have to show up every single day.</p>
+            <br>
+            <p><strong>3. Stay active and move fast.</strong> Be in the Discord daily. Ask questions. Share progress. Learn from other students. Progress through the course as fast as you can without sacrificing quality. Students who disappear for a week then come back never catch up.</p>
+        </div>
+
+        <!-- Urgency -->
+        <div class="bottom-callout">
+            <p>6 months of coaching. 6 months of support. 6 months to build a business that runs without you. Make every day count.</p>
+        </div>
+    </div>
+</body>
+</html>
